@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const sequelize = require('./db');
 
 const Poblacion = sequelize.define('poblacion', {
-    id: Sequelize.INTEGER,
+    id: {type: Sequelize.INTEGER, primaryKey: true},
     nombre: Sequelize.STRING,
     codigo: Sequelize.INTEGER,
     habitantes: Sequelize.INTEGER
