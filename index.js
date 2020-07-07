@@ -50,4 +50,20 @@ app.put("/poblaciones/:id", function (req, res) {
     .catch(err => res.status(400).json(err))
 })
 
+
+app.delete("/poblaciones/:id", function (req, res) {
+    const {id} = req.params;
+    Poblacion.findOne({where: {id}})
+    .then(poblacion => {
+        if (poblacion) {
+            poblacion.destroy()
+            .then(() => res.status(204).json())
+        }
+        else {
+            res.status(404).json("Población no registrada")
+        }
+    })
+    .catch(err => res.status(400).json(err))
+})
+
 app.listen(3000)
