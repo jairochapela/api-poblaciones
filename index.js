@@ -31,4 +31,23 @@ app.post("/poblaciones", function (req, res) {
     .catch(err => res.status(400).json(err))
 })
 
+app.put("/poblaciones/:id", function (req, res) {
+    const {id} = req.params;
+    const nuevosDatos = req.body;
+    Poblacion.findOne({where: {id}})
+    .then(poblacion => {
+        if (poblacion) {
+            //copia los campos de nuevosDatos al objeto original (población)
+            Object.assign(poblacion, nuevosDatos)
+
+            //guarda los datos actualizados y genera respuesta
+            poblacion.save()
+            .then(poblacion => res.json(poblacion))
+        } else {
+            res.status(404).json("Población no registrada")
+        }
+    })
+    .catch(err => res.status(400).json(err))
+})
+
 app.listen(3000)
