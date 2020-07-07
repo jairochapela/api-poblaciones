@@ -16,7 +16,10 @@ app.get("/poblaciones", function (req, res) {
 app.get("/poblaciones/:id", function (req, res) {
     const {id} = req.params;
     Poblacion.findOne({where: {id}})
-    .then(poblacion => res.json(poblacion))
+    .then(poblacion => {
+        if (poblacion) res.json(poblacion)
+        else res.status(404).json("Población no registrada")
+    })
     .catch(err => res.json(err))
 })
 
