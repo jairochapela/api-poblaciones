@@ -9,7 +9,7 @@
   "author": "Jairo Chapela",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mariadb": "^2.4.1",
     "sequelize": "^6.3.0"
   }
